@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'io.dropwizard', name: 'dropwizard-core', version: '2.0.20'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+
+application {
+    setMainClassName("Demo1Application")
+}
+
+run{
+    args = ['server','config.yaml']
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "Demo1Application"
+    }
+    baseName = 'all-in-one-jar'
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+shadowJar{
+    archiveBaseName = 'raja'
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+}
+
