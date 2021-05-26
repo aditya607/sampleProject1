@@ -17,4 +17,10 @@
 8. apply shadow plugin , overwrite shadowJar task with exclude 'META-INF' and other files. and add mergeServiceFiles()
    - now run executable jar with java -jar file server config.yaml.
 
-9.
+now docker 
+
+9. first of create a docker file. [from java, copy config and jar in workdir, expose the port and cmd].
+
+10. do docker build and run the docker image , it should run fine.
+
+11. build docker-compose.yml file . [include redis as service , as web as service whose build: . , will run redis and image created by Dockerfile]
