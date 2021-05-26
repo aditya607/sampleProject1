@@ -9,7 +9,7 @@
  
 5. add application in id in build file , under application task - setMainClassName 
 
-6. add run args in build file 
+6. add run args in build file  
 
 7. you can create an resource class , and add that class to environment.jersy.
    - run it will work fine
